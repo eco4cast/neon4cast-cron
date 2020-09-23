@@ -1,0 +1,35 @@
+{
+  "R": {
+    "Version": "4.0.2",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://packagemanager.rstudio.com/all/latest"
+      }
+    ]
+  },
+  "Packages": {
+    "cronR": {
+      "Package": "cronR",
+      "Version": "0.4.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "OS_type": "unix",
+      "Hash": "e4b8dd22a14790a5736694fd0181a401"
+    },
+    "digest": {
+      "Package": "digest",
+      "Version": "0.6.25",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "f697db7d92b7028c4b3436e9603fb636"
+    },
+    "renv": {
+      "Package": "renv",
+      "Version": "0.12.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "7340c71f46a0fd16506cfa804e224e44"
+    }
+  }
+}
