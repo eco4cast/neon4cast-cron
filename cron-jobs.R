@@ -42,7 +42,7 @@ if(dir.exists(file.path(home_dir, beetle_repo))){
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, noaa_download_repo, "launch_download_downscale.R"),
                     rscript_log = file.path(log_dir, "noaa-download.log"),
                     log_append = FALSE,
-                    workdir = file.path(home_dir, neon_download_repo))
+                    workdir = file.path(home_dir, noaa_download_repo))
 cronR::cron_add(command = cmd, frequency = '0 */6 * * *', id = 'noaa_download')
 
 ## NEON Download
@@ -50,7 +50,7 @@ cmd <- cronR::cron_rscript(rscript = file.path(home_dir, neon_download_repo, "do
                            rscript_log = file.path(log_dir, "neon-download.log"),
                            log_append = FALSE,
                            workdir = file.path(home_dir, neon_download_repo))
-cronR::cron_add(command = cmd, frequency = 'daily', at = "7AM", id = 'neon_download')
+cronR::cron_add(command = cmd, frequency = 'daily', at = "6AM", id = 'neon_download')
 
 ## Aquatics
 ### Targets
