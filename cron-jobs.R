@@ -1,7 +1,9 @@
+renv::restore()
+
 library(cronR)
 library(git2r)
 
-renv::restore()
+
 
 home_dir <- "/home/rstudio/Documents/scripts"
 log_dir <- "/efi_neon_challenge/log/cron"
