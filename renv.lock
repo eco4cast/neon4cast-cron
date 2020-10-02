@@ -11,11 +11,11 @@
   "Packages": {
     "cronR": {
       "Package": "cronR",
-      "Version": "0.4.0",
+      "Version": "0.4.2",
       "Source": "Repository",
       "Repository": "RSPM",
       "OS_type": "unix",
-      "Hash": "e4b8dd22a14790a5736694fd0181a401"
+      "Hash": "10ae0d015ddb37b55e3d5c6da506c5d6"
     },
     "digest": {
       "Package": "digest",
@@ -23,6 +23,13 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "f697db7d92b7028c4b3436e9603fb636"
+    },
+    "git2r": {
+      "Package": "git2r",
+      "Version": "0.27.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "531a82d1beed1f545beb25f4f5945bf7"
     },
     "renv": {
       "Package": "renv",

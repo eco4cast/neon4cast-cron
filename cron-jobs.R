@@ -1,6 +1,8 @@
 library(cronR)
 library(git2r)
 
+renv::restore()
+
 home_dir <- "/home/rstudio/Documents/scripts"
 log_dir <- "/efi_neon_challenge/log/cron"
 
@@ -43,7 +45,7 @@ cmd <- cronR::cron_rscript(rscript = file.path(home_dir, noaa_download_repo, "la
                     rscript_log = file.path(log_dir, "noaa-download.log"),
                     log_append = FALSE,
                     workdir = file.path(home_dir, noaa_download_repo))
-cronR::cron_add(command = cmd, frequency = '0 */6 * * *', id = 'noaa_download')
+cronR::cron_add(command = cmd, frequency = '0 */1 * * *', id = 'noaa_download')
 
 ## NEON Download
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, neon_download_repo, "download.R"),
@@ -62,7 +64,7 @@ cronR::cron_add(command = cmd, frequency = 'daily', at = "7AM", id = 'Aquatic_02
 
 ### Null forecast
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, aquatic_repo,"03_generate_null_forecast_aquatics.R"),
-                           rscript_log = file.path(log_dir, "aquatics-targets.log"),
+                           rscript_log = file.path(log_dir, "aquatics-forecast.log"),
                            log_append = FALSE,
                            workdir = file.path(home_dir, aquatic_repo))
 cronR::cron_add(command = cmd, frequency = 'daily', at = "8AM", id = 'Aquatic_03_forecast')
@@ -72,13 +74,13 @@ cronR::cron_add(command = cmd, frequency = 'daily', at = "8AM", id = 'Aquatic_03
 ### Targets
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, beetle_repo,"02_targets.R"),
                            rscript_log = file.path(log_dir, "beetle-targets.log"),
-                           log_append = FALSE,
+                           log_append = TRUE,
                            workdir = file.path(home_dir, beetle_repo))
-cronR::cron_add(command = cmd, frequency = 'daily', at = "7AM", id = 'Beetles_02_targets')
+cronR::cron_add(command = cmd, frequency = 'daily', at = "7am", id = 'Beetles_02_targets')
 
 ### Null forecast
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, beetle_repo,"03_forecast.R"),
-                           rscript_log = file.path(log_dir, "/beetle-forecast.log"),
+                           rscript_log = file.path(log_dir, "beetle-forecast.log"),
                            log_append = FALSE,
                            workdir = file.path(home_dir, beetle_repo))
 cronR::cron_add(command = cmd, frequency = 'daily',  at = "8AM", id = 'Beetles_03_forecast')
