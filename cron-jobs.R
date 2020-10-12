@@ -11,6 +11,7 @@ log_dir <- "/efi_neon_challenge/log/cron"
 noaa_download_repo <- "neon4cast-noaa-download"
 neon_download_repo <- "neon4cast-neon-download"
 aquatic_repo <- "RCN_freshwater"
+terrestrial_repo <- "RCN_terrestrial_fluxes"
 beetle_repo <- "NEON-community-forecast"
 
 if(dir.exists(file.path(home_dir, noaa_download_repo))){
@@ -47,7 +48,7 @@ cmd <- cronR::cron_rscript(rscript = file.path(home_dir, noaa_download_repo, "la
                     rscript_log = file.path(log_dir, "noaa-download.log"),
                     log_append = FALSE,
                     workdir = file.path(home_dir, noaa_download_repo))
-cronR::cron_add(command = cmd, frequency = '0 */1 * * *', id = 'noaa_download')
+cronR::cron_add(command = cmd, frequency = '0 */2 * * *', id = 'noaa_download')
 
 ## NEON Download
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, neon_download_repo, "download.R"),
@@ -78,7 +79,7 @@ cmd <- cronR::cron_rscript(rscript = file.path(home_dir, beetle_repo,"02_targets
                            rscript_log = file.path(log_dir, "beetle-targets.log"),
                            log_append = TRUE,
                            workdir = file.path(home_dir, beetle_repo))
-cronR::cron_add(command = cmd, frequency = 'daily', at = "7am", id = 'Beetles_02_targets')
+cronR::cron_add(command = cmd, frequency = 'daily', at = "7AM", id = 'Beetles_02_targets')
 
 ### Null forecast
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, beetle_repo,"03_forecast.R"),
@@ -86,6 +87,23 @@ cmd <- cronR::cron_rscript(rscript = file.path(home_dir, beetle_repo,"03_forecas
                            log_append = FALSE,
                            workdir = file.path(home_dir, beetle_repo))
 cronR::cron_add(command = cmd, frequency = 'daily',  at = "8AM", id = 'Beetles_03_forecast')
+
+## Terrestrial_fluxes
+
+### Targets
+cmd <- cronR::cron_rscript(rscript = file.path(home_dir, terrestrial_repo,"02_terrestrial_targets.R"),
+                           rscript_log = file.path(log_dir, "terrestrial-targets.log"),
+                           log_append = TRUE,
+                           workdir = file.path(home_dir, terrestrial_repo))
+cronR::cron_add(command = cmd, frequency = 'daily', at = "7AM", id = '02_terrestrial_targets')
+
+### Null Daily forecast
+cmd <- cronR::cron_rscript(rscript = file.path(home_dir, terrestrial_repo,"03_terrestrial_flux_daily_null.R"),
+                           rscript_log = file.path(log_dir, "terrestrial-daily-forecast.log"),
+                           log_append = FALSE,
+                           workdir = file.path(home_dir, terrestrial_repo))
+cronR::cron_add(command = cmd, frequency = 'daily',  at = "8AM", id = 'Terrestrial_04_forecast_daily')
+
 
 cronR::cron_ls()
 
