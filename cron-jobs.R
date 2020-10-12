@@ -10,9 +10,9 @@ log_dir <- "/efi_neon_challenge/log/cron"
 
 noaa_download_repo <- "neon4cast-noaa-download"
 neon_download_repo <- "neon4cast-neon-download"
-aquatic_repo <- "RCN_freshwater"
-terrestrial_repo <- "RCN_terrestrial_fluxes"
-beetle_repo <- "NEON-community-forecast"
+aquatic_repo <- "neon4cast-aquatics"
+terrestrial_repo <- "neon4cast-terrestrial"
+beetle_repo <- "neon4cast-beetles"
 
 if(dir.exists(file.path(home_dir, noaa_download_repo))){
   if(!git2r::in_repository(file.path(home_dir, noaa_download_repo))){
