@@ -50,6 +50,10 @@ cmd <- cronR::cron_rscript(rscript = file.path(home_dir, phenology_repo,"phenolo
 cronR::cron_add(command = cmd, frequency = 'daily', at = "6PM", id = 'phenology-workflow')
 
 
+## Ticks
+
+# Not currently automated
+
 
 cronR::cron_ls()
 
