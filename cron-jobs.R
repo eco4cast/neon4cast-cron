@@ -46,7 +46,7 @@ cronR::cron_add(command = cmd, frequency = 'daily', at = "9AM", id = 'terrestria
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, phenology_repo,"phenology-workflow.R"),
                            rscript_log = file.path(log_dir, "phenology.log"),
                            log_append = TRUE,
-                           workdir = file.path(home_dir, beetle_repo))
+                           workdir = file.path(home_dir, phenology_repo))
 cronR::cron_add(command = cmd, frequency = 'daily', at = "6PM", id = 'phenology-workflow')
 
 
