@@ -25,21 +25,21 @@ cmd <- cronR::cron_rscript(rscript = file.path(home_dir, aquatic_repo,"aquatics-
                            workdir = file.path(home_dir, aquatic_repo))
 cronR::cron_add(command = cmd, frequency = 'daily', at = "7AM", id = 'aquatics-workflow')
 
-## Terrestrial_fluxes
-
-cmd <- cronR::cron_rscript(rscript = file.path(home_dir, terrestrial_repo,"terrestrial-workflow.R"),
-                           rscript_log = file.path(log_dir, "terrestrial.log"),
-                           log_append = TRUE,
-                           workdir = file.path(home_dir, terrestrial_repo))
-cronR::cron_add(command = cmd, frequency = 'daily', at = "8AM", id = 'terrestrial-workflow')
-
 ## Beetles
 
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, beetle_repo,"beetles-workflow.R"),
                            rscript_log = file.path(log_dir, "beetle.log"),
                            log_append = TRUE,
                            workdir = file.path(home_dir, beetle_repo))
-cronR::cron_add(command = cmd, frequency = 'daily', at = "9AM", id = 'beetles-workflow')
+cronR::cron_add(command = cmd, frequency = 'daily', at = "8AM", id = 'beetles-workflow')
+
+## Terrestrial_fluxes
+
+cmd <- cronR::cron_rscript(rscript = file.path(home_dir, terrestrial_repo,"terrestrial-workflow.R"),
+                           rscript_log = file.path(log_dir, "terrestrial.log"),
+                           log_append = TRUE,
+                           workdir = file.path(home_dir, terrestrial_repo))
+cronR::cron_add(command = cmd, frequency = 'daily', at = "9AM", id = 'terrestrial-workflow')
 
 ## Phenology
 
