@@ -20,7 +20,7 @@ cronR::cron_add(command = cmd, frequency = '0 */2 * * *', id = 'noaa_download')
 ## Aquatics
 
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, aquatic_repo,"aquatics-workflow.R"),
-                           rscript_log = file.path(log_dir, "aquatics_workflow.log"),
+                           rscript_log = file.path(log_dir, "aquatics.log"),
                            log_append = FALSE,
                            workdir = file.path(home_dir, aquatic_repo))
 cronR::cron_add(command = cmd, frequency = 'daily', at = "7AM", id = 'aquatics-workflow')
