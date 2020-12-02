@@ -1,4 +1,3 @@
-renv::restore()
 library(cronR)
 
 home_dir <- "/home/rstudio/Documents/scripts"
@@ -9,6 +8,8 @@ aquatic_repo <- "neon4cast-aquatics"
 terrestrial_repo <- "neon4cast-terrestrial"
 beetle_repo <- "neon4cast-beetles"
 phenology_repo <- "neon4cast-phenology"
+
+scoring_repo <- "neon4cast-scoring"
 
 ## NOAA Download
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, noaa_download_repo, "launch_download_downscale.R"),
@@ -53,6 +54,13 @@ cronR::cron_add(command = cmd, frequency = 'daily', at = "6PM", id = 'phenology-
 ## Ticks
 
 # Not currently automated
+
+## Scoring 
+cmd <- cronR::cron_rscript(rscript = file.path(home_dir, scoring_repo, "scoring.R"),
+                           rscript_log = file.path(log_dir, "scoring.log"),
+                           log_append = FALSE,
+                           workdir = file.path(home_dir, noaa_download_repo))
+cronR::cron_add(command = cmd, frequency = 'daily', at = "11 am", id = 'scoring')
 
 
 cronR::cron_ls()
