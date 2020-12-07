@@ -56,10 +56,17 @@ cronR::cron_add(command = cmd, frequency = 'daily', at = "6PM", id = 'phenology-
 # Not currently automated
 
 ## Scoring 
+
+cmd <- cronR::cron_rscript(rscript = file.path(home_dir, scoring_repo, "process_submissions.R"),
+                           rscript_log = file.path(log_dir, "process_submissions.log"),
+                           log_append = FALSE,
+                           workdir = file.path(home_dir, scoring_repo))
+cronR::cron_add(command = cmd, frequency = 'daily', at = "10 am", id = 'process_submissions')
+
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, scoring_repo, "scoring.R"),
                            rscript_log = file.path(log_dir, "scoring.log"),
                            log_append = FALSE,
-                           workdir = file.path(home_dir, noaa_download_repo))
+                           workdir = file.path(home_dir, scoring_repo))
 cronR::cron_add(command = cmd, frequency = 'daily', at = "11 am", id = 'scoring')
 
 
