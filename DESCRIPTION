@@ -1,0 +1,4 @@
+Package: cronR
+Version: 0.1.0
+Imports: cronR
+Remotes: rqthomas/cronR
