@@ -13,6 +13,7 @@ phenology_repo <- "neon4cast-phenology"
 ticks_repo <- "neon4cast-ticks"
 
 scoring_repo <- "neon4cast-scoring"
+submissions_repo <- "neon4cast-submissions"
 
 ## NOAA Download
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, noaa_download_repo, "launch_download_downscale.R"),
@@ -70,10 +71,10 @@ cronR::cron_add(command = cmd, frequency = "0 11 1 * *", id = 'ticks-workflow', 
 
 ## Scoring 
 
-cmd <- cronR::cron_rscript(rscript = file.path(home_dir, scoring_repo, "process_submissions.R"),
+cmd <- cronR::cron_rscript(rscript = file.path(home_dir, submissions_repo, "process_submissions.R"),
                            rscript_log = file.path(log_dir, "process_submissions.log"),
                            log_append = FALSE,
-                           workdir = file.path(home_dir, scoring_repo),
+                           workdir = file.path(home_dir, submissions_repo),
                            trailing_arg = "curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/dad902ab-4847-4303-bd61-c27de2a1b43a")
 cronR::cron_add(command = cmd, frequency = 'daily', at = "10 am", id = 'process_submissions')
 
