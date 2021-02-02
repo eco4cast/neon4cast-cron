@@ -76,7 +76,7 @@ cmd <- cronR::cron_rscript(rscript = file.path(home_dir, submissions_repo, "proc
                            log_append = FALSE,
                            workdir = file.path(home_dir, submissions_repo),
                            trailing_arg = "curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/dad902ab-4847-4303-bd61-c27de2a1b43a")
-cronR::cron_add(command = cmd, frequency = 'daily', at = "10 am", id = 'process_submissions')
+cronR::cron_add(command = cmd, frequency = 'hourly', id = 'process_submissions')
 
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, scoring_repo, "scoring.R"),
                            rscript_log = file.path(log_dir, "scoring.log"),
