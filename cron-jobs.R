@@ -32,6 +32,13 @@ cmd <- cronR::cron_rscript(rscript = file.path(home_dir, noaa_download_repo, "la
                            trailing_arg = "curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/bccdd589-2c8d-49cc-8404-033d6c8ed12a")
 cronR::cron_add(command = cmd, frequency = '0 */3 * * *', id = 'noaacfs_download')
 
+cmd <- cronR::cron_rscript(rscript = file.path(home_dir, noaa_download_repo, "run_stack_noaa.R"),
+                           rscript_log = file.path(log_dir, "noaa-stack.log"),
+                           log_append = FALSE,
+                           workdir = file.path(home_dir, noaa_download_repo),
+                           trailing_arg = "curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/b2122302-6996-4a08-ab1c-f7f29d04e160")
+cronR::cron_add(command = cmd, frequency = 'daily', at = "4AM", id = 'noaa_stack')
+
 ## NEON Download
 
 cmd <- cronR::cron_rscript(rscript = file.path(home_dir, shared_utilities_repo, "neon_download_store.R"),
